@@ -3,6 +3,7 @@
 #include <fstream>
 
 extern const int TEMP_STRING_BUFFER_SIZE;
+class StringArray;
 
 class String
 {
@@ -50,4 +51,27 @@ public:
 
     static String ReadStringFromFile(std::ifstream &, const char & = '\n');
     static String FromInteger(int);
+};
+
+class StringArray
+{
+private:
+    int length;
+    String** arr;
+public:
+    StringArray();
+    StringArray(const int&);
+    StringArray(const int&, const String *);
+
+    StringArray& operator=(const StringArray&);
+
+    int GetLength();
+
+    StringArray& Remove(const int&);
+    String PopBack();
+    StringArray& PushBack(const String&);
+    StringArray& Swap(const int&, const int&);
+    String& operator[](const int&);
+
+    ~StringArray();
 };
