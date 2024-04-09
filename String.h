@@ -46,7 +46,8 @@ public:
 
     int GetLength() const;
     const char *GetConstCharArray() const;
-    String GetSubstring(int, int = -1) const;
+    String GetSubstring(const int&, int = -1) const;
+    // TODO: StringArray Split(const char&) const;
     int ToInteger() const;
 
     static String ReadStringFromFile(std::ifstream &, const char & = '\n');
@@ -65,12 +66,13 @@ public:
 
     StringArray& operator=(const StringArray&);
 
-    int GetLength();
+    int GetLength() const;
 
     StringArray& Remove(const int&);
     String PopBack();
     StringArray& PushBack(const String&);
     StringArray& Swap(const int&, const int&);
+    String At(const int&) const;
     String& operator[](const int&);
 
     ~StringArray();

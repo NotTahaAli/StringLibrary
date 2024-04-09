@@ -47,7 +47,7 @@ StringArray &StringArray::operator=(const StringArray &rhs)
     return *this;
 }
 
-int StringArray::GetLength()
+int StringArray::GetLength() const
 {
     return length;
 }
@@ -117,6 +117,15 @@ StringArray &StringArray::Swap(const int &index1, const int &index2)
     arr[index1] = arr[index2];
     arr[index2] = temp;
     return *this;
+}
+
+String StringArray::At(const int &index) const
+{
+    if (index < 0 || index >= length)
+    {
+        throw invalid_argument("Index out of Range.");
+    }
+    return *arr[index];
 }
 
 String &StringArray::operator[](const int &index)

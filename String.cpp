@@ -118,7 +118,7 @@ const char *String::GetConstCharArray() const
     return str;
 }
 
-String String::GetSubstring(int begin, int len) const
+String String::GetSubstring(const int& begin, int len) const
 {
     if (begin < 0 || begin >= length)
     {
