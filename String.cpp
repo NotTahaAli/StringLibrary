@@ -187,6 +187,19 @@ int String::ToInteger() const
     return sign * num;
 }
 
+int String::Find(const String &needle) const
+{
+    int needLength = needle.GetLength();
+    if (needLength == 0)
+        return -1;
+    for (int i = 0; i <= length - needLength; i++)
+    {
+        if (GetSubstring(i, needLength) == needle)
+            return i;
+    }
+    return -1;
+}
+
 int String::GetStringLength(const char *str)
 {
     if (!str)

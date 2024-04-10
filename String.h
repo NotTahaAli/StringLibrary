@@ -49,6 +49,7 @@ public:
     String GetSubstring(const int&, int = -1) const;
     StringArray Split(const char& = 0) const;
     int ToInteger() const;
+    int Find(const String&) const;
 
     static String GetStringFromStream(std::istream &, const int& = TEMP_STRING_BUFFER_SIZE, const char & = '\n');
     static String FromInteger(int);
