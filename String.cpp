@@ -255,6 +255,44 @@ char *String::ConcatenateString(const char *str1, const char *str2)
     return newString;
 }
 
+char String::LowerCaseCharacter(const char& c) {
+    if (c >= 'A' && c <= 'Z') return c + 'a' - 'A';
+    return c;
+}
+
+char String::UpperCaseCharacter(const char& c) {
+    if (c >= 'a' && c <= 'z') return c + 'A' - 'a';
+    return c;
+}
+
+String& String::ToLowerCase()
+{
+    for (int i = 0; i < length; i++) {
+        str[i] = LowerCaseCharacter(str[i]);
+    }
+    return *this;
+}
+
+String& String::ToUpperCase()
+{
+    for (int i = 0; i < length; i++) {
+        str[i] = UpperCaseCharacter(str[i]);
+    }
+    return *this;
+}
+
+String String::LowerCase() const
+{
+    String out = *this;
+    return out.ToLowerCase();
+}
+
+String String::UpperCase() const
+{
+    String out = *this;
+    return out.ToUpperCase();
+}
+
 String String::GetStringFromStream(istream &in, const int &MAX_SIZE, const char &delim)
 {
     char buffer[MAX_SIZE + 1];

@@ -21,6 +21,8 @@ private:
     static int CompareString(const char *, const char *);
 
     static char *ConcatenateString(const char *, const char *);
+    static char LowerCaseCharacter(const char &);
+    static char UpperCaseCharacter(const char &);
 
 public:
     String();
@@ -46,12 +48,17 @@ public:
 
     int GetLength() const;
     const char *GetConstCharArray() const;
-    String GetSubstring(const int&, int = -1) const;
-    StringArray Split(const char& = 0) const;
+    String GetSubstring(const int &, int = -1) const;
+    StringArray Split(const char & = 0) const;
     int ToInteger() const;
-    int Find(const String&) const;
+    int Find(const String &) const;
 
-    static String GetStringFromStream(std::istream &, const int& = TEMP_STRING_BUFFER_SIZE, const char & = '\n');
+    String &ToLowerCase();
+    String &ToUpperCase();
+    String LowerCase() const;
+    String UpperCase() const;
+
+    static String GetStringFromStream(std::istream &, const int & = TEMP_STRING_BUFFER_SIZE, const char & = '\n');
     static String FromInteger(int);
 };
 
@@ -59,23 +66,24 @@ class StringArray
 {
 private:
     int length;
-    String** arr;
+    String **arr;
+
 public:
     StringArray();
-    StringArray(const int&);
-    StringArray(const int&, const String *);
+    StringArray(const int &);
+    StringArray(const int &, const String *);
 
-    StringArray& operator=(const StringArray&);
+    StringArray &operator=(const StringArray &);
 
     int GetLength() const;
 
-    StringArray& Remove(const int&);
+    StringArray &Remove(const int &);
     String PopBack();
-    StringArray& PushBack(const String&);
-    StringArray& Swap(const int&, const int&);
-    String At(const int&) const;
-    String Join(const String& = "") const;
-    String& operator[](const int&);
+    StringArray &PushBack(const String &);
+    StringArray &Swap(const int &, const int &);
+    String At(const int &) const;
+    String Join(const String & = "") const;
+    String &operator[](const int &);
 
     ~StringArray();
 };
