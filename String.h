@@ -8,7 +8,7 @@ class StringArray;
 class String
 {
     friend std::ostream &operator<<(std::ostream &, const String &);
-    friend std::ifstream &operator>>(std::ifstream &, String &);
+    friend std::istream &operator>>(std::istream &, String &);
     friend String operator+(const char *, const String &);
     friend String operator+(const char &, const String &);
 
@@ -47,10 +47,10 @@ public:
     int GetLength() const;
     const char *GetConstCharArray() const;
     String GetSubstring(const int&, int = -1) const;
-    // TODO: StringArray Split(const char&) const;
+    StringArray Split(const char& = 0) const;
     int ToInteger() const;
 
-    static String ReadStringFromFile(std::ifstream &, const char & = '\n');
+    static String GetStringFromStream(std::istream &, const int& = TEMP_STRING_BUFFER_SIZE, const char & = '\n');
     static String FromInteger(int);
 };
 

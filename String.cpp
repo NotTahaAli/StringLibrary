@@ -118,7 +118,7 @@ const char *String::GetConstCharArray() const
     return str;
 }
 
-String String::GetSubstring(const int& begin, int len) const
+String String::GetSubstring(const int &begin, int len) const
 {
     if (begin < 0 || begin >= length)
     {
@@ -130,10 +130,37 @@ String String::GetSubstring(const int& begin, int len) const
     }
     String out;
     out.length = len;
+    delete[] out.str;
     out.str = new char[len + 1]{0};
     for (int i = 0, j = begin; i < len; i++, j++)
     {
         out.str[i] = str[j];
+    }
+    return out;
+}
+
+StringArray String::Split(const char &delim) const
+{
+    StringArray out;
+    if (delim == 0)
+    {
+        out = StringArray(length);
+        for (int i = 0; i < length; i++)
+        {
+            out[i] = str[i];
+        }
+    }
+    else
+    {
+        int start = 0;
+        for (int i = 0; i <= length; i++)
+        {
+            if (str[i] == delim || i == length)
+            {
+                out.PushBack(GetSubstring(start, i - start));
+                start = i + 1;
+            }
+        }
     }
     return out;
 }
@@ -215,10 +242,10 @@ char *String::ConcatenateString(const char *str1, const char *str2)
     return newString;
 }
 
-String String::ReadStringFromFile(ifstream &infile, const char &delim)
+String String::GetStringFromStream(istream &in, const int &MAX_SIZE, const char &delim)
 {
-    char buffer[TEMP_STRING_BUFFER_SIZE];
-    infile.getline(buffer, TEMP_STRING_BUFFER_SIZE - 1, delim);
+    char buffer[MAX_SIZE + 1];
+    in.getline(buffer, MAX_SIZE, delim);
     return buffer;
 }
 
@@ -237,7 +264,7 @@ String String::FromInteger(int num)
     }
     while (num > 0)
     {
-        out = (num % 10)+'0' + out;
+        out = (num % 10) + '0' + out;
         num /= 10;
     }
     return ((isNeg) ? "-" : "") + out;
@@ -249,10 +276,10 @@ ostream &operator<<(ostream &out, const String &str)
     return out;
 }
 
-ifstream &operator>>(ifstream &infile, String &str)
+istream &operator>>(istream &in, String &str)
 {
     char buffer[TEMP_STRING_BUFFER_SIZE];
-    infile >> buffer;
+    in >> buffer;
     str = buffer;
-    return infile;
+    return in;
 }
