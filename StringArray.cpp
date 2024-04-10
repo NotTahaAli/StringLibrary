@@ -75,6 +75,9 @@ StringArray &StringArray::Remove(const int &index)
 
 String StringArray::PopBack()
 {
+    if (length == 0) {
+        throw invalid_argument("String Array is Empty");
+    }
     String out = *arr[length - 1];
     delete arr[length - 1];
     length--;
@@ -126,6 +129,20 @@ String StringArray::At(const int &index) const
         throw invalid_argument("Index out of Range.");
     }
     return *arr[index];
+}
+
+String StringArray::Join(const String &delim) const
+{
+    if (length == 0)
+        return "";
+    String out = *arr[0];
+    for (int i = 1; i < length; i++) {
+        if (delim.GetLength() > 0) {
+            out += delim;
+        }
+        out += *arr[i];
+    }
+    return out;
 }
 
 String &StringArray::operator[](const int &index)

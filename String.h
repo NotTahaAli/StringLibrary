@@ -73,6 +73,7 @@ public:
     StringArray& PushBack(const String&);
     StringArray& Swap(const int&, const int&);
     String At(const int&) const;
+    String Join(const String& = "") const;
     String& operator[](const int&);
 
     ~StringArray();
