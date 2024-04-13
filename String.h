@@ -2,7 +2,10 @@
 #include <iostream>
 #include <fstream>
 
-extern const int TEMP_STRING_BUFFER_SIZE;
+#ifndef TEMP_STRING_BUFFER_SIZE
+#define TEMP_STRING_BUFFER_SIZE 100
+#endif
+
 class StringArray;
 
 class String

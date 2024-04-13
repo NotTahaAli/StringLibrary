@@ -1,8 +1,6 @@
 #include "String.h"
 using namespace std;
 
-const int TEMP_STRING_BUFFER_SIZE = 100;
-
 String::String() : length(0), str(new char[1]{0}){};
 
 String::String(const String &str2) : length(str2.length)
