@@ -73,6 +73,7 @@ public:
     StringArray(const int &);
     StringArray(const int &, const String *);
 
+    StringArray(const StringArray &);
     StringArray &operator=(const StringArray &);
 
     int GetLength() const;

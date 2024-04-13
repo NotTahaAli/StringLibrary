@@ -33,6 +33,16 @@ StringArray::StringArray(const int &len, const String *stringArr) : length(len),
     }
 };
 
+StringArray::StringArray(const StringArray &rhs)
+{
+    length = rhs.length;
+    arr = new String *[length];
+    for (int i = 0; i < length; i++)
+    {
+        arr[i] = new String(*rhs.arr[i]);
+    }
+}
+
 StringArray &StringArray::operator=(const StringArray &rhs)
 {
     if (this == &rhs)
