@@ -61,6 +61,9 @@ public:
     String LowerCase() const;
     String UpperCase() const;
 
+    bool StartsWith(const String &) const;
+    bool EndsWith(const String &) const;
+
     static String GetStringFromStream(std::istream &, const int & = TEMP_STRING_BUFFER_SIZE, const char & = '\n');
     static String FromInteger(int);
 };

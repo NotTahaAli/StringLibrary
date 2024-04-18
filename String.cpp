@@ -291,6 +291,24 @@ String String::UpperCase() const
     return out.ToUpperCase();
 }
 
+bool String::StartsWith(const String& needle) const
+{
+    if (needle.length > length) return false;
+    for (int i = 0; i < needle.length; i++) {
+        if (str[i] != needle.str[i]) return false;
+    }
+    return true;
+}
+
+bool String::EndsWith(const String& needle) const
+{
+    if (needle.length > length) return false;
+    for (int i = 0; i < needle.length; i++) {
+        if (str[length-needle.length+i] != needle.str[i]) return false;
+    }
+    return true;
+}
+
 String String::GetStringFromStream(istream &in, const int &MAX_SIZE, const char &delim)
 {
     char buffer[MAX_SIZE + 1];
