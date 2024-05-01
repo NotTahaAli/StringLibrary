@@ -48,7 +48,7 @@ String &String::operator+=(const String &str2)
     return *this;
 }
 
-String String::operator+(const String &str2)
+String String::operator+(const String &str2) const
 {
     String out;
     delete[] out.str;
